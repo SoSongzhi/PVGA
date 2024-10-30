@@ -4,12 +4,8 @@
 ![Version](https://img.shields.io/badge/version-1.0-blue)
 
 ### Overview
-**PVGA** is a sota assembly tool for **("viral genome assembly")**. This project leverages **(mention any key technology or algorithm, e.g., "graph-based alignment" or "iterative methods")** to enable **(list key features or functionalities, e.g., "highly accurate genome assembly and error correction")**.
+**PVGA** is a powerful virus-focused assembler that does both assembly and polishing. For virus genomes, small changes will lead to significant differences in terms of viral function and pathogenicity.  Thus, for virus-focused assemblers, high-accuracy results are crucial. Our approach heavily depends on the input reads as evidence to produce the reported genome. It first adopts a reference genome to start with.  We then align all the reads against the reference genome to get an alignment graph. After that, we use a dynamic programming algorithm to compute a path with the maximum weight of edges supported by reads. Most importantly, the obtained path is used as the new reference genome and the process is repeated until no further improvement is possible. 
 
-### Features
-- **Feature 1**: Brief description.
-- **Feature 2**: Brief description.
-- **Feature 3**: Brief description.
 
 ### Installation
 To install and use **PVGA**, please follow these steps:
