@@ -29,5 +29,3 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 ### Contact
 For questions or support, please contact [songzhics@gmail.com] or open an issue on GitHub.
 ```
-
-Replace placeholders with actual information about your project. This format should provide a professional and organized overview for potential users or collaborators.
