@@ -6,7 +6,7 @@ import os
 import argparse
 import utils
 import polisher as pl
-import consensus as cs
+
 import edit_distance as ed
 from networkx.readwrite.graph6 import write_graph6
 import shutil
@@ -40,7 +40,7 @@ if __name__ == "__main__":
 		graph_location = os.path.join(graph_folder, graph_filename)
 
 		os.makedirs(graph_folder, exist_ok=True)
-		consensus_location = cs.get_consensus_sequence(ec_reads, backbone, graph_folder)
+	
 
 
 		start_time = time.perf_counter()
