@@ -1,9 +1,6 @@
 # PVGA
 
-Here’s a template for a README to introduce your GitHub project in English. This template covers essential sections, including project purpose, installation, features, and contribution guidelines.
 
-```markdown
-# Project Name
 
 ![GitHub License](https://img.shields.io/github/license/yourusername/yourrepository)
 ![Version](https://img.shields.io/badge/version-1.0-blue)
