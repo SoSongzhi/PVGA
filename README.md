@@ -1,7 +1,6 @@
 # PVGA
 
-
-![GitHub License](https://github.com/SoSongzhi/PVGA/blob/main/LICENSE)
+![GitHub License](https://img.shields.io/github/license/yourusername/yourrepository)
 ![Version](https://img.shields.io/badge/version-1.0-blue)
 
 ### Overview
