@@ -9,13 +9,13 @@ def is_node_redundant(graph, node):
         if graph.edges[node, successor]['weight'] > 2:
             return False
     
-    # Check if the node is a starting point and its outgoing edge weight is 2
+    
     if graph.in_degree(node) == 0 and graph.out_degree(node) >= 2:
         for successor in graph.successors(node):
             if graph.edges[node, successor]['weight'] > 2:
                 return False
     
-    # Check if the node is an ending point and its incoming edge weight is 2
+   
     if graph.out_degree(node) == 0 and graph.in_degree(node) >= 2:
         for predecessor in graph.predecessors(node):
             if graph.edges[predecessor, node]['weight'] > 2:
