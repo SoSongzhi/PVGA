@@ -425,3 +425,18 @@ def merge_filter(dbs_file, samp_file, filter_file):
     SeqIO.write(filtered_seqs, filter_file, "fasta")
 
     return
+
+def extract_sequences(filepath):
+    """从 .fa 文件中提取所有序列内容"""
+    sequences = []
+    with open(filepath, 'r') as f:
+        for line in f:
+            if not line.startswith('>'):  # 跳过标题行
+                sequences.append(line.strip())
+    return ''.join(sequences)
+
+def are_sequences_identical(file1, file2):
+    """比较两个 .fa 文件的序列是否一致"""
+    seq1 = extract_sequences(file1)
+    seq2 = extract_sequences(file2)
+    return seq1 == seq2
