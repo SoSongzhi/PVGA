@@ -1,7 +1,11 @@
+python==3.10
+numba
 Bio==1.7.1
 biopython==1.83
 consensus==1.0.5
 networkx==3.1
-numpy==1.23.5
-pandas==2.0.3
+# numpy==1.23.5
+# pandas==2.0.3
+numpy
 pysam==0.22.0
+pandas==1.5.2
