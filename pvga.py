@@ -44,6 +44,7 @@ if __name__ == "__main__":
 
 
 		start_time = time.perf_counter()
+		oldbackbone = backbone
 
 		# print(f"Function execution time: {end_time - start_time:.6f} seconds")
 		if i == 0 : 
@@ -74,15 +75,14 @@ if __name__ == "__main__":
 		end_node = topological_order[-1]
 	
 		# 计算最大权重路径
-		#max_weight, max_weight_path, max_weight_sequences, node_graph = cp.max_weight_path(graph)
+		# max_weight, max_weight_path, max_weight_sequences, node_graph = cp.max_weight_path_cuda(graph)
 		max_weight, max_weight_path, max_weight_sequences, node_graph = cp.max_weight_path_old(graph, start_node, end_node)
+		# max_weight, max_weight_path, max_weight_sequences, node_graph = cp.max_weight_path_gpu(graph, start_node, end_node)
+
 		end_time = time.perf_counter()
 
 		polished_graph, polished_sequences = pl.polish(node_graph)
 		pb=ws.store_labels_as_fa_hanshuming(polished_sequences, graph_folder,'dp_polish')
-		
-	
-
 		
 		backbone = graph_location = os.path.join(graph_folder, 'output_{}_{}.fa'.format(graph_out_pref, 0))
 		print("graph_folder", graph_folder)
@@ -90,7 +90,8 @@ if __name__ == "__main__":
 		# pbdconsensus =  ws.store_labels_as_fa([pbdconsensus[::-1]], os.path.join(graph_folder , f"pbdconsensus"))
 		print(f"Iteration {i+1} completed.")
 		print("-----------------------------------------------------------------------------------------------")
-
+		if utils.are_sequences_identical(oldbackbone, sequence_location):
+			break
 		
 		sequence_location = os.path.join(graph_folder, 'output_{}_{}.fa'.format(graph_out_pref, 0))
 		if i == 1:
@@ -113,7 +114,8 @@ if __name__ == "__main__":
 
 	ws.store_labels_as_fa(polished_sequences, polish_folder)
 
-
+	if not os.path.exists(args.od):
+		os.makedirs(args.od)
 	# move together
 	dst_file=os.path.join(args.od, "dp_polished.fa")
 	shutil.copy(polished_location, dst_file)
@@ -124,8 +126,8 @@ if __name__ == "__main__":
 	dst_file=os.path.join(args.od, "dp_noiter_result.fa")
 	shutil.copy(dp_noiter_result, dst_file)
 
-	dst_file=os.path.join(args.od, "vote_consensus.fa")
-	shutil.copy(consensus_location, dst_file)
+	# dst_file=os.path.join(args.od, "vote_consensus.fa")
+	# shutil.copy(consensus_location, dst_file)
 
 	# import writegraphconsensus as wss
 	# wss.store_labels_as_fa([graph_consensus], polish_folder)
