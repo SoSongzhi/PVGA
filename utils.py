@@ -55,7 +55,7 @@ def aln2nx(aln_graph):
     edge_l = list(aln_graph.edges.values())
 
     nx_g = nx.DiGraph()
-
+    #dict stores the id and the number id of each node
     node_id_dict = {}
     for i, nd in enumerate(node_l):
         node_id_dict[nd.ID] = i
@@ -86,14 +86,14 @@ def nx_path_score(nx_graph, path):
     return score
 
 def nx_homo(nx_g, out_f):
-    
+    #count the homopolymer region and return a list of range
     homo_loc = []
     min_len = 3
     win_len = 10
     topo_list = list(nx.topological_sort(nx_g)) 
-    
+    #print(topo_list[0:30])
     for i, nd in enumerate(topo_list[10:]):
-        
+        #nd_l = [u for u,v, attr  in nx_g.in_edges(nd, data = True)]
         nd_l = []
         for u,v in nx_g.in_edges(nd):
             nd_l.append(u)
@@ -105,12 +105,13 @@ def nx_homo(nx_g, out_f):
         freq_l.append(in_base_l.count('G'))
         freq_l.append(in_base_l.count('T'))
         
-        if max(freq_l) >= min_len: n
-            
+        if max(freq_l) >= min_len: #it's a homopolymer region of length min_len
+            #print(i, nd, nd_l, freq_l)
             homo_end = nd
             homo_begin = 0
-            homo_char = char_l[freq_l.index(max(freq_l))] 
-            in = topo_list[ i - win_len + 1: i + 1]
+            homo_char = char_l[freq_l.index(max(freq_l))] #base of this hp region
+            #now locate the beginning of this region
+            #win = topo_list[ i - win_len + 1: i + 1]
             win = topo_list[ 10 + i - win_len + 1: 10 + i] #i is the index start from 10 in topo-list
             
             for win_nd in win[::-1]:
