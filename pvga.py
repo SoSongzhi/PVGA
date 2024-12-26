@@ -117,13 +117,13 @@ if __name__ == "__main__":
 	if not os.path.exists(args.od):
 		os.makedirs(args.od)
 	# move together
-	dst_file=os.path.join(args.od, "dp_polished.fa")
+	dst_file=os.path.join(args.od, 'pvga_{}.fa'.format(graph_out_pref))
 	shutil.copy(polished_location, dst_file)
 
-	dst_file=os.path.join(args.od, "dp_result.fa")
-	shutil.copy(sequence_location, dst_file)
+	# dst_file=os.path.join(args.od, "dp_result.fa")
+	# shutil.copy(sequence_location, dst_file)
 
-	dst_file=os.path.join(args.od, "dp_noiter_result.fa")
+	dst_file=os.path.join(args.od, 'pvga_noiter_{}.fa'.format(graph_out_pref))
 	shutil.copy(dp_noiter_result, dst_file)
 
 	# dst_file=os.path.join(args.od, "vote_consensus.fa")
