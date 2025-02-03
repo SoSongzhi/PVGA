@@ -11,14 +11,29 @@
 To install and use **PVGA**, please follow these steps:
 
 ```bash
-   sudo apt install blasr
-   conda create pvga --name pvga python==3.10
+   git clone https://github.com/SoSongzhi/PVGA.git
+   cd PVGA
+   conda env create -f requirements.yml
+   conda activate pvga
+   ```
+
+Test successful installation with
+```bash
+   python pvga.py --help
+   ```
+
+<details><summary> Optionally, you can install the components one by one: </summary>
+
+```bash
+   conda create --name pvga -c bioconda python==3.10 blasr
    conda activate pvga
    git clone https://github.com/SoSongzhi/PVGA.git
    cd PVGA
    pip install -r requirements.txt
+   ```
 
-   ``` 
+</details>
+
 
 ### Usage
 
