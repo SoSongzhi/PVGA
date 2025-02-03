@@ -11,10 +11,10 @@
 To install and use **PVGA**, please follow these steps:
 
 ```bash
-   conda env create -f requirements.yml
-   conda activate pvga
    git clone https://github.com/SoSongzhi/PVGA.git
    cd PVGA
+   conda env create -f requirements.yml
+   conda activate pvga
    ```
 
 Test successful installation with
