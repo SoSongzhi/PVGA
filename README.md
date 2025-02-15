@@ -22,9 +22,36 @@ To install and use **PVGA**, please follow these steps:
 
 ### Usage
 
+To display the help message and see the available command-line options for the pvga.py script, run the following command in your terminal:
+```bash
+python pvga.py -h
+```
+
+To perform assembly using the pvga.py script, use the following command structure:
+
 ```bash
 python pvga.py -r [reads location] -b [backbone locatino] -n [ITERATION NUM] -od [output dir]
 ```
+#### Arguments
+
+- **`-r [reads location]`, `--reads [reads location]`**:  
+  Path to the input reads file or directory containing the sequencing reads (e.g., FASTQ or FASTA files).
+
+- **`-b [backbone location]`, `--backbone [backbone location]`**:  
+  Path to the backbone sequence file (e.g., a reference genome or plasmid in FASTA format).
+
+- **`-n [ITERATION NUM]`, `--iterations [ITERATION NUM]`**:  
+  Number of iterations to run the assembly process. This controls the depth or refinement of the assembly.
+
+- **`-od [output dir]`, `--output_dir [output dir]`**:  
+  Path to the directory where the output files (e.g., assembled sequences, logs, and reports) will be saved.
+
+
+### Example Command
+```bash
+python pvga.py -r /path/to/reads.fastq -b /path/to/backbone.fasta -n 10 -od /path/to/output_dir
+```
+
 
 ### License
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
@@ -32,3 +59,6 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 ### Contact
 For questions or support, please contact [songzhics@gmail.com] or open an issue on GitHub.
 ```
+
+
+
