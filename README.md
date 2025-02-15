@@ -49,7 +49,7 @@ python pvga.py -r [reads location] -b [backbone locatino] -n [ITERATION NUM] -od
 
 ### Example Command
 ```bash
-python pvga.py -r /path/to/reads.fastq -b /path/to/backbone.fasta -n 10 -od /path/to/output_dir
+python pvga.py -r hiv_30x_4k_id90_98_2.5.fastq -b HXB2.fa -n 10 -od test_pvga
 ```
 
 
