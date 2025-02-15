@@ -1,5 +1,5 @@
-python==3.10
 numba
+torch
 Bio==1.7.1
 biopython==1.83
 consensus==1.0.5

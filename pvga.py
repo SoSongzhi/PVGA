@@ -20,13 +20,12 @@ if __name__ == "__main__":
 	parser.add_argument('-r', type=str, required=True, help="Reads file for graph construction (in fasta format).")
 	parser.add_argument('-b', type=str, required=True, help="Backbone sequence file for graph construction (in fasta format).")
 	parser.add_argument('-n', type=int, required=True, help="Number of Iterations for graph construction.")
-	parser.add_argument('-gt',type=str, required=True, help="Ground truth sequence" )
 	parser.add_argument('-od', type=str, required=True, help="Outdir")
 
 	args = parser.parse_args()
 	ec_reads = args.r
 	backbone = args.b
-	groundtruth = args.gt
+	# groundtruth = args.gt
 	num_iterations = args.n
 
 	graph_out_pref = os.path.join(ec_reads + "_ON_" + os.path.splitext(os.path.basename(backbone))[0])
