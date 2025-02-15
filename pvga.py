@@ -16,17 +16,18 @@ import datetime
 
 # 构图
 if __name__ == "__main__":
-	parser = argparse.ArgumentParser()
-	parser.add_argument('-r', type=str, required=True, help="Reads file for graph construction (in fasta format).")
-	parser.add_argument('-b', type=str, required=True, help="Backbone sequence file for graph construction (in fasta format).")
-	parser.add_argument('-n', type=int, required=True, help="Number of Iterations for graph construction.")
-	parser.add_argument('-od', type=str, required=True, help="Outdir")
+	parser = argparse.ArgumentParser(description="Perform graph-based sequence assembly.")
+	parser.add_argument('-r','--reads',type=str, required=True, help="Reads file for graph construction (in fasta format).")
+	parser.add_argument('-b', '--backbone',type=str, required=True, help="Backbone sequence file for graph construction (in fasta format).")
+	parser.add_argument('-n', '--iterations', type=int, required=True, help="Maximum Number of Iterations for graph construction.")
+	parser.add_argument('-od','--output_dir', type=str, required=True, help="Outdir")
 
 	args = parser.parse_args()
-	ec_reads = args.r
-	backbone = args.b
+	ec_reads = args.reads
+	backbone = args.backbone
 	# groundtruth = args.gt
-	num_iterations = args.n
+	num_iterations = args.iterations
+	outdir = args.output_dir
 
 	graph_out_pref = os.path.join(ec_reads + "_ON_" + os.path.splitext(os.path.basename(backbone))[0])
 	graph_out_pref = os.path.basename(graph_out_pref)
@@ -113,19 +114,19 @@ if __name__ == "__main__":
 
 	ws.store_labels_as_fa(polished_sequences, polish_folder)
 
-	if not os.path.exists(args.od):
-		os.makedirs(args.od)
+	if not os.path.exists(outdir):
+		os.makedirs(outdir)
 	# move together
-	dst_file=os.path.join(args.od, 'pvga_{}.fa'.format(graph_out_pref))
+	dst_file=os.path.join(outdir, 'pvga_{}.fa'.format(graph_out_pref))
 	shutil.copy(polished_location, dst_file)
 
-	# dst_file=os.path.join(args.od, "dp_result.fa")
+	# dst_file=os.path.join(outdir, "dp_result.fa")
 	# shutil.copy(sequence_location, dst_file)
 
-	dst_file=os.path.join(args.od, 'pvga_noiter_{}.fa'.format(graph_out_pref))
+	dst_file=os.path.join(outdir, 'pvga_noiter_{}.fa'.format(graph_out_pref))
 	shutil.copy(dp_noiter_result, dst_file)
 
-	# dst_file=os.path.join(args.od, "vote_consensus.fa")
+	# dst_file=os.path.join(outdir, "vote_consensus.fa")
 	# shutil.copy(consensus_location, dst_file)
 
 	# import writegraphconsensus as wss
