@@ -19,7 +19,7 @@ if __name__ == "__main__":
 	parser = argparse.ArgumentParser(description="Perform graph-based sequence assembly.")
 	parser.add_argument('-r','--reads',type=str, required=True, help="Reads file for graph construction (in fasta format).")
 	parser.add_argument('-b', '--backbone',type=str, required=True, help="Backbone sequence file for graph construction (in fasta format).")
-	parser.add_argument('-n', '--iterations', type=int, required=True, help="Maximum Number of Iterations for graph construction.")
+	parser.add_argument('-n', '--iterations', type=int, required=False, default=15 , help="Maximum Number of Iterations for graph construction.")
 	parser.add_argument('-od','--output_dir', type=str, required=True, help="Outdir")
 
 	args = parser.parse_args()
@@ -100,7 +100,7 @@ if __name__ == "__main__":
 
 		
 	
-	dp_time = end_time - start_time
+	# dp_time = end_time - start_time
 	#os.system(f"quast.py {backbone} -r {groundtruth}")
 	polish_folder = os.path.join(graph_out_pref, f"polish")
 	os.makedirs(polish_folder, exist_ok=True)
