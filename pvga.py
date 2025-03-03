@@ -1,21 +1,18 @@
 import networkx as nx
-import readgraph as rg
-import choosepaths as cp
-import writesequence as ws
+from . import readgraph as rg
+from . import choosepaths as cp
+from . import writesequence as ws
 import os
 import argparse
-import utils
-import polisher as pl
-
-import edit_distance as ed
+from . import utils
+from . import polisher as pl
 from networkx.readwrite.graph6 import write_graph6
 import shutil
 import os
 import time
 import datetime
 
-# 构图
-if __name__ == "__main__":
+def main():
 	parser = argparse.ArgumentParser(description="Perform graph-based sequence assembly.")
 	parser.add_argument('-r','--reads',type=str, required=True, help="Reads file for graph construction (in fasta format).")
 	parser.add_argument('-b', '--backbone',type=str, required=True, help="Backbone sequence file for graph construction (in fasta format).")
@@ -131,3 +128,7 @@ if __name__ == "__main__":
 
 	# import writegraphconsensus as wss
 	# wss.store_labels_as_fa([graph_consensus], polish_folder)
+
+# 构图
+if __name__ == "__main__":
+	main()

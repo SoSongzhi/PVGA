@@ -1,7 +1,7 @@
 import networkx as nx
 import numpy as np
 # from numba import cuda
-import torch
+# import torch
 # cuda.select_device(0)
 # cuda.get_current_device().reset()
 
@@ -16,62 +16,62 @@ def is_node_redundant(graph, node):
     
     return True
 
-def max_weight_path_gpu(graph, start, end):
+# def max_weight_path_gpu(graph, start, end):
 
-    nodes = list(graph.nodes)
-    edges = list(graph.edges(data='weight'))
-    node_indices = {node: i for i, node in enumerate(nodes)}
+#     nodes = list(graph.nodes)
+#     edges = list(graph.edges(data='weight'))
+#     node_indices = {node: i for i, node in enumerate(nodes)}
 
-    node_type_mapping = {node_type: i for i, node_type in enumerate(
-        {graph.nodes[node]['type'] for node in nodes}
-    )}
-    node_types = torch.tensor(
-        [node_type_mapping[graph.nodes[node]['type']] for node in nodes],
-        dtype=torch.int32
-    ).to('cuda')
+#     node_type_mapping = {node_type: i for i, node_type in enumerate(
+#         {graph.nodes[node]['type'] for node in nodes}
+#     )}
+#     node_types = torch.tensor(
+#         [node_type_mapping[graph.nodes[node]['type']] for node in nodes],
+#         dtype=torch.int32
+#     ).to('cuda')
 
-    dp = torch.full((len(nodes),), float('-inf'), device='cuda')  # 在 GPU 上
-    dp[node_indices[start]] = 0
-    path = torch.full((len(nodes),), -1, dtype=torch.int32, device='cuda')
+#     dp = torch.full((len(nodes),), float('-inf'), device='cuda')  # 在 GPU 上
+#     dp[node_indices[start]] = 0
+#     path = torch.full((len(nodes),), -1, dtype=torch.int32, device='cuda')
 
-    edge_indices = torch.tensor(
-        [[node_indices[u], node_indices[v]] for u, v, _ in edges], device='cuda'
-    )
-    edge_weights = torch.tensor(
-        [float(data) if data is not None else 0.0 for _, _, data in edges],
-        dtype=torch.float32, device='cuda'
-    )
+#     edge_indices = torch.tensor(
+#         [[node_indices[u], node_indices[v]] for u, v, _ in edges], device='cuda'
+#     )
+#     edge_weights = torch.tensor(
+#         [float(data) if data is not None else 0.0 for _, _, data in edges],
+#         dtype=torch.float32, device='cuda'
+#     )
 
-    for _ in range(len(nodes)):
-        for i, (u, v) in enumerate(edge_indices):
-            weight = edge_weights[i]
-            if dp[u] + weight > dp[v]:
-                dp[v] = dp[u] + weight
-                path[v] = u
+#     for _ in range(len(nodes)):
+#         for i, (u, v) in enumerate(edge_indices):
+#             weight = edge_weights[i]
+#             if dp[u] + weight > dp[v]:
+#                 dp[v] = dp[u] + weight
+#                 path[v] = u
 
-    max_weight_path = []
-    node_labels = []
-    current_index = node_indices[end]
-    while current_index != -1:
-        node = nodes[current_index]
-        max_weight_path.append(node)
-        node_labels.append(node_types[current_index].item())
-        current_index = path[current_index].item()
+#     max_weight_path = []
+#     node_labels = []
+#     current_index = node_indices[end]
+#     while current_index != -1:
+#         node = nodes[current_index]
+#         max_weight_path.append(node)
+#         node_labels.append(node_types[current_index].item())
+#         current_index = path[current_index].item()
 
-    max_weight_path.reverse()
-    node_labels.reverse()
+#     max_weight_path.reverse()
+#     node_labels.reverse()
 
-    max_weight_graph = nx.DiGraph()
-    for i in range(len(max_weight_path)):
-        node = max_weight_path[i]
-        node_type = graph.nodes[node]['type']
-        max_weight_graph.add_node(node, type=node_type)
-        if i > 0:
-            prev_node = max_weight_path[i - 1]
-            weight = graph.edges[prev_node, node]['weight']
-            max_weight_graph.add_edge(prev_node, node, weight=weight)
+#     max_weight_graph = nx.DiGraph()
+#     for i in range(len(max_weight_path)):
+#         node = max_weight_path[i]
+#         node_type = graph.nodes[node]['type']
+#         max_weight_graph.add_node(node, type=node_type)
+#         if i > 0:
+#             prev_node = max_weight_path[i - 1]
+#             weight = graph.edges[prev_node, node]['weight']
+#             max_weight_graph.add_edge(prev_node, node, weight=weight)
 
-    return dp[node_indices[end]].item(), max_weight_path, node_labels, max_weight_graph
+#     return dp[node_indices[end]].item(), max_weight_path, node_labels, max_weight_graph
 def max_weight_path(graph):
     dp = {node: float('-inf') for node in graph}
     path = {node: None for node in graph}

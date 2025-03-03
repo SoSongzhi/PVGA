@@ -1,8 +1,7 @@
 from math import log, sqrt
 import os
 import pandas as pd
-import aligngraph
-from aligngraph import convert_mismatches, AlnGraph
+from .aligngraph import convert_mismatches, AlnGraph
 import networkx as nx
 from Bio import SeqIO
 
