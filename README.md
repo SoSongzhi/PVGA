@@ -13,24 +13,20 @@ To install and use **PVGA**, please follow these steps:
 ```bash
    sudo apt install blasr
    conda create -n pvga python=3.10
-   conda activate pvga
-   git clone https://github.com/SoSongzhi/PVGA.git
-   cd PVGA
-   pip install -r requirements.txt
-
+   pip install pvga
    ``` 
 
 ### Usage
 
-To display the help message and see the available command-line options for the pvga.py script, run the following command in your terminal:
+To display the help message and see the available command-line options for the pvga script, run the following command in your terminal:
 ```bash
-python pvga.py -h
+pvga -h
 ```
 
 To perform assembly using the pvga.py script, use the following command structure:
 
 ```bash
-python pvga.py -r [reads location] -b [backbone locatino] -n [ITERATION NUM] -od [output dir]
+pvga -r [reads location] -b [backbone locatino] -od [output dir]
 ```
 #### Arguments
 
@@ -41,7 +37,7 @@ python pvga.py -r [reads location] -b [backbone locatino] -n [ITERATION NUM] -od
   Path to the backbone sequence file (e.g., a reference genome or plasmid in FASTA format).
 
 - **`-n [ITERATION NUM]`, `--iterations [ITERATION NUM]`**:  
-  Number of iterations to run the assembly process. This controls the depth or refinement of the assembly.
+  (Optional) Number of iterations to run the assembly process. This controls the depth or refinement of the assembly.
 
 - **`-od [output dir]`, `--output_dir [output dir]`**:  
   Path to the directory where the output files (e.g., assembled sequences, logs, and reports) will be saved.
@@ -49,7 +45,7 @@ python pvga.py -r [reads location] -b [backbone locatino] -n [ITERATION NUM] -od
 
 ### Example Command
 ```bash
-python pvga.py -r hiv_30x_4k_id90_98_2.5.fastq -b HXB2.fa -n 10 -od test_pvga
+pvga -r hiv_30x_4k_id90_98_2.5.fastq -b HXB2.fa -n 10 -od test_pvga
 ```
 
 
