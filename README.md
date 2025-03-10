@@ -43,10 +43,21 @@ pvga -r [reads location] -b [backbone locatino] -od [output dir]
   Path to the directory where the output files (e.g., assembled sequences, logs, and reports) will be saved.
 
 
-### Example Command
+#### Example Command
 ```bash
 pvga -r hiv_30x_4k_id90_98_2.5.fastq -b HXB2.fa -n 10 -od test_pvga
 ```
+
+### For paired-end reads
+Users can also assembly pair-end reads using PVGA. Please use tool bbmap to merge paired-end reads while preserving paired-end information. The merging process command shows as below:
+
+```bash
+conda install bioconda::bbmap
+bbmerge.sh in1=reads1.fastq in2=reads2.fastq out=merged.fastq outu1=unmerged1.fastq outu2=unmerged2.fastq
+cat merged.fastq unmerged1.fastq unmerged2.fastq > all.fastq
+```
+
+Then the all.fastq can be assemblied using PVGA.
 
 
 ### License
