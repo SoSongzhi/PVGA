@@ -39,13 +39,13 @@ pvga -r [reads location] -b [backbone locatino] -od [output dir]
 - **`-n [ITERATION NUM]`, `--iterations [ITERATION NUM]`**:  
   (Optional) Number of iterations to run the assembly process. This controls the depth or refinement of the assembly.
 
-- **`-od [output dir]`, `--output_dir [output dir]`**:  
+- **`-o [output dir]`, `--output_dir [output dir]`**:  
   Path to the directory where the output files (e.g., assembled sequences, logs, and reports) will be saved.
 
 
 #### Example Command
 ```bash
-pvga -r hiv_30x_4k_id90_98_2.5.fastq -b HXB2.fa -n 10 -od test_pvga
+pvga -r hiv_30x_4k_id90_98_2.5.fastq -b HXB2.fa -n 10 -o test_pvga
 ```
 
 ### For paired-end reads
