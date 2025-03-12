@@ -26,7 +26,7 @@ pvga -h
 To perform assembly using the pvga.py script, use the following command structure:
 
 ```bash
-pvga -r [reads location] -b [backbone locatino] -od [output dir]
+pvga -r [reads location] -b [backbone locatino] -o [output dir]
 ```
 #### Arguments
 
