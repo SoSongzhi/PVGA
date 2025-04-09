@@ -10,12 +10,20 @@
 ### Installation
 To install and use **PVGA**, please follow these steps:
 
+#### pip install version
 ```bash
-   sudo apt install blasr
    conda create -n pvga python=3.10
+   conda install bioconda::blasr
    pip install pvga
+   pip install -r requirements.txt
    ``` 
+#### conda install version
 
+```bash
+   conda create -n pvga python=3.10
+   conda install bioconda:: blasr
+   conda install pvga
+  ```
 ### Usage
 
 To display the help message and see the available command-line options for the pvga script, run the following command in your terminal:
