@@ -56,8 +56,10 @@ pvga -r [reads location] -b [backbone locatino] -o [output dir]
 pvga -r hiv_30x_4k_id90_98_2.5.fastq -b HXB2.fa -n 10 -o test_pvga
 ```
 
-### For paired-end reads
-Users can also assembly pair-end reads using PVGA. Please use tool bbmap to merge paired-end reads while preserving paired-end information. The merging process command shows as below:
+### For paired-end reads (optional)
+
+Since PVGA accepts single-end reads as input, paired-end reads must be converted into a single-read format. The simplest way to do this is to concatenate the two paired-end read files (R1 and R2) into one file. However, this method does not use the pairing information during alignment. 
+We recommand users to  use tool BBmerge to merge paired-end reads while preserving paired-end information. The merging process command shows as below:
 
 ```bash
 conda install bioconda::bbmap
