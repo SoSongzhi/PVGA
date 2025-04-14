@@ -21,7 +21,7 @@ To install and use **PVGA**, please follow these steps:
 
 ```bash
    conda create -n pvga python=3.10
-   conda install bioconda:: blasr
+   conda install bioconda::blasr
    conda install pvga
   ```
 ### Usage
