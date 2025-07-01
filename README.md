@@ -70,6 +70,26 @@ cat merged.fastq unmerged1.fastq unmerged2.fastq > all.fastq
 Then the all.fastq can be assemblied using PVGA.
 
 
+## Citation
+If you use PVGA in your research, please cite our paper:
+
+> ​**PVGA: a precise viral genome assembler using an iterative alignment graph**​  
+> Zhi Song, Dehan Cai, Yanni Sun, Lusheng Wang.  
+> *GigaScience*, Volume 14, 2025, giaf063.  
+> DOI: [10.1093/gigascience/giaf063](https://doi.org/10.1093/gigascience/giaf063)
+
+​**BibTeX:​**​
+```bibtex
+@article{Song2025PVGA,
+  title     = {PVGA: a precise viral genome assembler using an iterative alignment graph},
+  author    = {Zhi Song and Dehan Cai and Yanni Sun and Lusheng Wang},
+  journal   = {GigaScience},
+  volume    = {14},
+  year      = {2025},
+  pages     = {giaf063},
+  doi       = {10.1093/gigascience/giaf063}
+}
+
 ### License
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
 
